@@ -1,4 +1,4 @@
-# BrightPath Language Center - Database Project Final
+# BrightPath Language Center - Database Project Final (Freshman)
 
 Dự án Cơ sở dữ liệu cuối kỳ thiết kế, triển khai và khai thác hệ thống quản lý lịch học, điểm danh, phân công nhân sự giảng dạy và cấp chứng chỉ nội bộ tại Trung tâm Ngoại ngữ BrightPath Language Center.
 
