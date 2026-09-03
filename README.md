@@ -1,37 +1,80 @@
 # BrightPath Language Center - Database Project Final (Freshman)
 
-Dự án Cơ sở dữ liệu cuối kỳ thiết kế, triển khai và khai thác hệ thống quản lý lịch học, điểm danh, phân công nhân sự giảng dạy và cấp chứng chỉ nội bộ tại Trung tâm Ngoại ngữ BrightPath Language Center.
+The final database project for designing, deploying, and operating a system to manage class schedules, attendance, teaching staff assignments, and internal certificate issuance at BrightPath Language Center.
 
----
+## Features
 
-## 1. Môi trường triển khai (Specs)
+- Class schedule and attendance management.
+- Teaching staff assignment.
+- Automated internal certificate issuance (automatically issuing Starter Badges for new students).
+- Reporting system and performance statistics.
+- Query performance optimization.
+- Testing scenarios and environment cleanup.
 
-- **Hệ quản trị CSDL:** MySQL 8.0+
-- **Storage Engine:** InnoDB
-- **Character Set / Collation:** `utf8mb4` / `utf8mb4_0900_ai_ci`
-- **Địa chỉ máy chủ kiểm thử:** Localhost
+## Project Structure
 
----
+```text
+BrightPath-Database-Project/
+├── 01_schema.sql
+├── 02_seed_data.sql
+├── 03_queries.sql
+├── 04_views.sql
+├── 05_routines.sql
+├── 06_triggers_events.sql
+├── 07_indexes_explain.sql
+├── 08_admin_backup.md
+├── 09_tests.sql
+├── BrightPath_Report_Cuoi_Ki.docx
+├── erd.png
+└── README.md
+```
 
-## 2. Thứ tự thực thi mã nguồn (Execution Order)
+## Technologies
 
-Để đảm bảo các thực thể, ràng buộc khóa ngoại, triggers, views và dữ liệu mẫu được thiết lập chính xác mà không gặp lỗi phụ thuộc, vui lòng chạy các file SQL theo thứ tự nghiêm ngặt dưới đây:
+- **Database Management System**: MySQL 8.0+
+- **Storage Engine**: InnoDB
+- **Character Set / Collation**: utf8mb4 / utf8mb4_0900_ai_ci
+- **Testing Environment**: Localhost
 
-1. **`01_schema.sql`**: Khởi tạo database và cấu trúc của 10 bảng (bao gồm bảng audit log).
-2. **`06_triggers_events.sql`**: Thiết lập các triggers nghiệp vụ và các sự kiện lập lịch.
-   * *Lưu ý:* Cần chạy file này trước khi nạp dữ liệu mẫu để trigger tự động cấp Starter Badge hoạt động chính xác cho học viên mới.
-3. **`02_seed_data.sql`**: Nạp bộ dữ liệu mẫu đầy đủ phục vụ kiểm thử và khai thác.
-4. **`04_views.sql`**: Tạo các view báo cáo và thống kê hiệu suất.
-5. **`05_routines.sql`**: Cài đặt các hàm (functions) và thủ tục lưu trữ (stored procedures).
-6. **`07_indexes_explain.sql`**: Thiết lập các chỉ mục tối ưu hiệu năng và xem kế hoạch thực thi mẫu.
-7. **`03_queries.sql`**: Gói truy vấn phục vụ các câu hỏi nghiệp vụ thực tế (Q01-Q08).
-8. **`09_tests.sql`**: Kịch bản chạy thử nghiệm kiểm thử tích cực/tiêu cực và dọn dẹp môi trường.
+## Run
 
----
+To ensure entities, foreign key constraints, triggers, views, and sample data are set up correctly without dependency errors, run the SQL files in the strict order below:
 
-## 3. Tài liệu kèm theo
+```bash
+# 1. Initialize the database and structure of 10 tables (including the audit log table).
+mysql -u root -p < 01_schema.sql
 
-- **`README.md`**: Tài liệu hướng dẫn này.
-- **`08_admin_backup.md`**: Hướng dẫn quản trị phân quyền cục bộ và quy trình sao lưu/phục hồi.
-- **`BrightPath_Report_Cuoi_Ki.docx`**: Báo cáo chi tiết cuối kỳ đầy đủ 9 chương (kế thừa giữa kỳ và bổ sung tất cả các nội dung cuối kỳ).
-- **`erd.png`**: Bản vẽ ERD Crow's Foot hoàn chỉnh làm tài liệu thiết kế gốc.
+# 2. Set up business triggers and scheduled events.
+# Note: This file must be run before loading sample data for the automatic Starter Badge trigger to work.
+mysql -u root -p < 06_triggers_events.sql
+
+# 3. Load the full sample dataset for testing and operation.
+mysql -u root -p < 02_seed_data.sql
+
+# 4. Create reporting views and performance statistics.
+mysql -u root -p < 04_views.sql
+
+# 5. Install functions and stored procedures.
+mysql -u root -p < 05_routines.sql
+
+# 6. Set up indexes for performance optimization and view sample execution plans.
+mysql -u root -p < 07_indexes_explain.sql
+
+# 7. Query package for real-world business questions (Q01-Q08).
+mysql -u root -p < 03_queries.sql
+
+# 8. Scenarios for positive/negative testing and environment cleanup.
+mysql -u root -p < 09_tests.sql
+```
+
+## Learning Outcomes
+
+The project demonstrates the practical application of database techniques, including designing a 10-table structure, programming business triggers/events, optimizing via indexes, building views/routines, and deep query scenarios. Included is a complete Crow's Foot ERD, administration/backup guide (08_admin_backup.md), and a detailed 9-chapter report (BrightPath_Report_Cuoi_Ki.docx).
+
+## Author
+
+**Tien Son Nguyen** (aka fyltwjns)
+
+GitHub: [https://github.com/fyltwjns](https://github.com/fyltwjns)
+
+> Final database project for designing, deploying, and operating a system to manage class schedules, attendance, teaching staff assignments, and internal certificate issuance.
